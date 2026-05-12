@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budaya Indonesia</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    .font-heading { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Source Sans 3', sans-serif; }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+    .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-8px) scale(1.02); }
+    .tab-active { border-bottom: 3px solid #c47f2e; color: #c47f2e; }
+    .quiz-option { transition: all 0.2s ease; }
+    .quiz-option:hover { background: #fef3e2; border-color: #c47f2e; }
+    .quiz-correct { background: #d1fae5 !important; border-color: #10b981 !important; }
+    .quiz-wrong { background: #fee2e2 !important; border-color: #ef4444 !important; }
+    .batik-pattern {
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(196,127,46,0.05) 10px, rgba(196,127,46,0.05) 20px);
+    }
+  </style>
+</head>
+<body class="h-full font-body">
+  <div id="app" class="h-full w-full overflow-auto bg-stone-50 batik-pattern">
+    
+    <!-- Header -->
+    <header class="relative bg-gradient-to-br from-amber-900 via-amber-800 to-stone-900 text-white py-12 px-6 text-center overflow-hidden">
+      <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><circle cx=%2230%22 cy=%2230%22 r=%224%22 fill=%22white%22/></svg>');"></div>
+      <div class="relative z-10">
+        <h1 id="main-title" class="font-heading text-4xl md:text-5xl font-900 mb-3 animate-fade-up">Budaya Indonesia</h1>
+        <p id="subtitle" class="text-amber-200 text-lg md:text-xl font-light animate-fade-up" style="animation-delay:0.2s;opacity:0">Jelajahi Keindahan Nusantara</p>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="sticky top-0 z-20 bg-white shadow-md border-b border-stone-200">
+      <div class="flex justify-center gap-1 px-4 max-w-4xl mx-auto">
+        <button onclick="switchTab('rumah')" id="tab-rumah" class="tab-btn tab-active px-4 py-3 font-semibold text-sm md:text-base transition-colors"> <span class="hidden md:inline">🏠 </span>Rumah Adat </button> 
+        <button onclick="switchTab('tarian')" id="tab-tarian" class="tab-btn px-4 py-3 font-semibold text-sm md:text-base text-stone-500 transition-colors"> <span class="hidden md:inline">💃 </span>Tarian </button> 
+        <button onclick="switchTab('kuliner')" id="tab-kuliner" class="tab-btn px-4 py-3 font-semibold text-sm md:text-base text-stone-500 transition-colors"> <span class="hidden md:inline">🍲 </span>Kuliner </button> 
+        <button onclick="switchTab('kuis')" id="tab-kuis" class="tab-btn px-4 py-3 font-semibold text-sm md:text-base text-stone-500 transition-colors"> <span class="hidden md:inline">📝 </span>Kuis </button>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="max-w-5xl mx-auto p-4 md:p-8">
+      <!-- Rumah Adat Section -->
+      <section id="section-rumah" class="animate-fade-up">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-amber-900 mb-6 text-center">Rumah Adat Nusantara</h2>
+        <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">Indonesia memiliki lebih dari 30 jenis rumah adat yang mencerminkan kearifan lokal dan identitas budaya setiap daerah.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('rumah', 0)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="download.jpg" alt="Rumah Gadang" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Rumah+Gadang'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Rumah Gadang</h3>
+              <p class="text-stone-500 text-sm mt-1">Sumatera Barat</p>
+              <p class="text-stone-600 text-sm mt-2">Rumah adat Minangkabau dengan atap berbentuk tanduk kerbau yang ikonik.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('rumah', 1)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="tongkonan.jpg" alt="Tongkonan" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Tongkonan'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Tongkonan</h3>
+              <p class="text-stone-500 text-sm mt-1">Sulawesi Selatan</p>
+              <p class="text-stone-600 text-sm mt-2">Rumah adat Toraja dengan atap melengkung menyerupai perahu.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('rumah', 2)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="joglo.jpg" alt="Joglo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Joglo'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Joglo</h3>
+              <p class="text-stone-500 text-sm mt-1">Jawa Tengah</p>
+              <p class="text-stone-600 text-sm mt-2">Rumah adat Jawa dengan atap menjulang tinggi sebagai simbol kemakmuran.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tarian Section -->
+      <section id="section-tarian" class="hidden animate-fade-up">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-amber-900 mb-6 text-center">Tarian Tradisional</h2>
+        <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">Setiap daerah di Indonesia memiliki tarian khas yang menceritakan kisah, upacara, dan kehidupan masyarakat.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('tarian', 0)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="pendet.jpg" alt="Tari Pendet" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Tari+Pendet'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Tari Pendet</h3>
+              <p class="text-stone-500 text-sm mt-1">Bali</p>
+              <p class="text-stone-600 text-sm mt-2">Tarian penyambutan yang anggun sebagai persembahan kepada dewa.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('tarian', 1)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="samat.jpg" alt="Tari Saman" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Tari+Saman'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Tari Saman</h3>
+              <p class="text-stone-500 text-sm mt-1">Aceh</p>
+              <p class="text-stone-600 text-sm mt-2">Tarian seribu tangan yang menampilkan kekompakan luar biasa.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('tarian', 2)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="kaipong.jpg" alt="Tari Jaipong" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Tari+Jaipong'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Tari Jaipong</h3>
+              <p class="text-stone-500 text-sm mt-1">Jawa Barat</p>
+              <p class="text-stone-600 text-sm mt-2">Tarian dinamis yang menggabungkan pencak silat dan ketuk tilu.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kuliner Section -->
+      <section id="section-kuliner" class="hidden animate-fade-up">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-amber-900 mb-6 text-center">Kuliner Nusantara</h2>
+        <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">Kekayaan rempah Indonesia menghasilkan ragam kuliner yang diakui dunia.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('kuliner', 0)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="rendang.jpg" alt="Rendang" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Rendang'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Rendang</h3>
+              <p class="text-stone-500 text-sm mt-1">Sumatera Barat</p>
+              <p class="text-stone-600 text-sm mt-2">Masakan daging berbumbu rempah yang pernah dinobatkan sebagai makanan terenak dunia.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('kuliner', 1)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="gudeg.jpg" alt="Gudeg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Gudeg'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Gudeg</h3>
+              <p class="text-stone-500 text-sm mt-1">Yogyakarta</p>
+              <p class="text-stone-600 text-sm mt-2">Masakan nangka muda yang dimasak dengan santan dan gula merah.</p>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showDetail('kuliner', 2)">
+            <div class="h-40 bg-stone-200 overflow-hidden">
+              <img src="papeda.jpg" alt="Papeda" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=Papeda'">
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading font-bold text-lg text-stone-800">Papeda</h3>
+              <p class="text-stone-500 text-sm mt-1">Papua</p>
+              <p class="text-stone-600 text-sm mt-2">Makanan pokok khas Papua dari sagu yang disajikan dengan kuah ikan.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kuis Section -->
+      <section id="section-kuis" class="hidden animate-fade-up">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-amber-900 mb-6 text-center">Uji Pengetahuanmu!</h2>
+        <p class="text-center text-stone-600 mb-8">Jawab pertanyaan berikut untuk menguji pemahamanmu tentang budaya Indonesia.</p>
+        <div id="quiz-container" class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-8">
+          <div id="quiz-progress" class="flex gap-2 mb-6"></div>
+          <div id="quiz-question" class="font-heading text-xl font-bold text-stone-800 mb-6"></div>
+          <div id="quiz-options" class="space-y-3"></div>
+          <div id="quiz-feedback" class="mt-4 p-4 rounded-xl hidden"></div>
+          <div class="flex justify-between mt-6">
+            <button id="quiz-next" onclick="nextQuestion()" class="hidden ml-auto bg-amber-700 hover:bg-amber-800 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors"> Selanjutnya → </button>
+          </div>
+          <div id="quiz-result" class="hidden text-center py-8">
+            <div class="text-5xl mb-4">🎉</div>
+            <h3 class="font-heading text-2xl font-bold text-amber-900 mb-2">Selesai!</h3>
+            <p id="quiz-score" class="text-lg text-stone-600 mb-6"></p>
+            <button onclick="resetQuiz()" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors">Ulangi Kuis</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background:rgba(0,0,0,0.6)">
+      <div class="bg-white rounded-2xl max-w-lg w-full max-h-[85%] overflow-auto shadow-2xl animate-fade-up">
+        <!-- Area gambar di modal -->
+        <div id="modal-header" class="h-56 bg-stone-200 overflow-hidden rounded-t-2xl"></div>
+        <div class="p-6">
+          <h3 id="modal-title" class="font-heading text-2xl font-bold text-stone-800 mb-1"></h3>
+          <p id="modal-origin" class="text-amber-700 font-semibold text-sm mb-4"></p>
+          <p id="modal-desc" class="text-stone-600 leading-relaxed"></p>
+          <div id="modal-facts" class="mt-4 space-y-2"></div>
+          <button onclick="closeModal()" class="mt-6 w-full bg-stone-800 hover:bg-stone-900 text-white font-semibold py-2.5 rounded-xl transition-colors">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data
+    const data = {
+      rumah: [
+        {
+          title: 'Rumah Gadang',
+          origin: 'Sumatera Barat',
+          image: 'download.jpg',
+          desc: 'Rumah adat Minangkabau dengan atap berbentuk tanduk kerbau.',
+          facts: [
+            'Atap berbentuk tanduk kerbau',
+            'Rumah adat Minangkabau',
+            'Simbol budaya Sumatera Barat'
+          ]
+        },
+        {
+          title: 'Tongkonan',
+          origin: 'Sulawesi Selatan',
+          image: 'tongkonan.jpg',
+          desc: 'Rumah adat Toraja dengan atap menyerupai perahu.',
+          facts: [
+            'Rumah adat Toraja',
+            'Atap melengkung',
+            'Memiliki ukiran khas'
+          ]
+        },
+        {
+          title: 'Joglo',
+          origin: 'Jawa Tengah',
+          image: 'joglo.jpg',
+          desc: 'Rumah adat Jawa dengan bentuk atap tinggi.',
+          facts: [
+            'Memiliki soko guru',
+            'Simbol kemakmuran',
+            'Rumah adat Jawa'
+          ]
+        }
+      ],
+      tarian: [
+        {
+          title: 'Tari Pendet',
+          origin: 'Bali',
+          image: 'pendet.jpg',
+          desc: 'Tarian penyambutan khas Bali.',
+          facts: [
+            'Gerakan lembut',
+            'Tarian penyambutan',
+            'Menggunakan bunga'
+          ]
+        },
+        {
+          title: 'Tari Saman',
+          origin: 'Aceh',
+          image: 'samat.jpg',
+          desc: 'Tarian seribu tangan yang kompak.',
+          facts: [
+            'Berasal dari Aceh',
+            'Gerakan cepat',
+            'Diakui UNESCO'
+          ]
+        },
+        {
+          title: 'Tari Jaipong',
+          origin: 'Jawa Barat',
+          image: 'kaipong.jpg',
+          desc: 'Tarian khas Sunda yang energik.',
+          facts: [
+            'Gerakan energik',
+            'Diiringi gamelan',
+            'Khas Jawa Barat'
+          ]
+        }
+      ],
+      kuliner: [
+        {
+          title: 'Rendang',
+          origin: 'Sumatera Barat',
+          image: 'rendang.jpg',
+          desc: 'Masakan khas Minang berbumbu rempah.',
+          facts: [
+            'Makanan terenak dunia',
+            'Kaya rempah',
+            'Dimasak lama'
+          ]
+        },
+        {
+          title: 'Gudeg',
+          origin: 'Yogyakarta',
+          image: 'gudeg.jpg',
+          desc: 'Makanan khas Jogja dari nangka muda.',
+          facts: [
+            'Rasa manis',
+            'Khas Yogyakarta',
+            'Dimasak lama'
+          ]
+        },
+        {
+          title: 'Papeda',
+          origin: 'Papua',
+          image: 'papeda.jpg',
+          desc: 'Makanan khas Papua berbahan sagu.',
+          facts: [
+            'Terbuat dari sagu',
+            'Tekstur lengket',
+            'Disajikan dengan ikan'
+          ]
+        }
+      ]
+    };
+
+    const quizData = [
+      { q: 'Rumah adat Minangkabau dengan atap berbentuk tanduk kerbau disebut?', options: ['Tongkonan', 'Rumah Gadang', 'Joglo', 'Honai'], answer: 1 },
+      { q: 'Tari Saman berasal dari provinsi?', options: ['Bali', 'Jawa Barat', 'Aceh', 'Papua'], answer: 2 },
+      { q: 'Makanan yang pernah dinobatkan CNN sebagai makanan terenak dunia?', options: ['Gudeg', 'Papeda', 'Sate', 'Rendang'], answer: 3 },
+      { q: 'Tongkonan adalah rumah adat suku?', options: ['Minangkabau', 'Toraja', 'Dayak', 'Asmat'], answer: 1 },
+      { q: 'Papeda adalah makanan pokok dari daerah?', options: ['Sulawesi', 'Kalimantan', 'Papua', 'Maluku'], answer: 2 }
+    ];
+
+    let currentQuestion = 0, score = 0, answered = false;
+
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('[id^="section-"]').forEach(s => s.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('tab-active'); b.classList.add('text-stone-500'); });
+      document.getElementById('section-' + tab).classList.remove('hidden');
+      const btn = document.getElementById('tab-' + tab);
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-stone-500');
+      if (tab === 'kuis') renderQuiz();
+    }
+
+    // Modal
+    function showDetail(category, index) {
+      const item = data[category][index];
+      const modalHeader = document.getElementById('modal-header');
+      
+      // Ubah class agar cocok untuk menampung gambar dan masukkan tag <img>
+      modalHeader.className = 'h-48 overflow-hidden rounded-t-2xl bg-stone-200';
+      modalHeader.innerHTML = `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/c47f2e/ffffff?text=${encodeURIComponent(item.title)}'">`;
+      
+      document.getElementById('modal-title').textContent = item.title;
+      document.getElementById('modal-origin').textContent = '📍 ' + item.origin;
+      document.getElementById('modal-desc').textContent = item.desc;
+      const factsEl = document.getElementById('modal-facts');
+      factsEl.innerHTML = '<h4 class="font-semibold text-stone-700 text-sm uppercase tracking-wide">Fakta Menarik:</h4>' + item.facts.map(f => `<div class="flex items-start gap-2 text-stone-600 text-sm"><span class="text-amber-600 mt-0.5">✦</span><span>${f}</span></div>`).join('');
+
+      const modal = document.getElementById('detail-modal');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('detail-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Quiz
+    function renderQuiz() {
+      if (currentQuestion >= quizData.length) { showResult(); return; }
+      answered = false;
+      const q = quizData[currentQuestion];
+      document.getElementById('quiz-progress').innerHTML = quizData.map((_, i) => `<div class="h-2 flex-1 rounded-full ${i < currentQuestion ? 'bg-amber-600' : i === currentQuestion ? 'bg-amber-300' : 'bg-stone-200'}"></div>`).join('');
+      document.getElementById('quiz-question').textContent = `${currentQuestion + 1}. ${q.q}`;
+      document.getElementById('quiz-options').innerHTML = q.options.map((o, i) => `<button onclick="selectAnswer(${i})" id="opt-${i}" class="quiz-option w-full text-left px-5 py-3 border-2 border-stone-200 rounded-xl font-medium text-stone-700">${o}</button>`).join('');
+      document.getElementById('quiz-feedback').classList.add('hidden');
+      document.getElementById('quiz-next').classList.add('hidden');
+      document.getElementById('quiz-result').classList.add('hidden');
+    }
+
+    function selectAnswer(idx) {
+      if (answered) return;
+      answered = true;
+      const correct = quizData[currentQuestion].answer;
+      document.getElementById('opt-' + idx).classList.add(idx === correct ? 'quiz-correct' : 'quiz-wrong');
+      if (idx !== correct) document.getElementById('opt-' + correct).classList.add('quiz-correct');
+      if (idx === correct) score++;
+      const fb = document.getElementById('quiz-feedback');
+      fb.classList.remove('hidden');
+      fb.className = `mt-4 p-4 rounded-xl ${idx === correct ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`;
+      fb.textContent = idx === correct ? '✅ Benar! Hebat!' : `❌ Kurang tepat. Jawaban yang benar: ${quizData[currentQuestion].options[correct]}`;
+      document.getElementById('quiz-next').classList.remove('hidden');
+    }
+
+    function nextQuestion() { currentQuestion++; renderQuiz(); }
+
+    function showResult() {
+      document.getElementById('quiz-question').classList.add('hidden');
+      document.getElementById('quiz-options').classList.add('hidden');
+      document.getElementById('quiz-feedback').classList.add('hidden');
+      document.getElementById('quiz-next').classList.add('hidden');
+      document.getElementById('quiz-progress').innerHTML = '';
+      const res = document.getElementById('quiz-result');
+      res.classList.remove('hidden');
+      document.getElementById('quiz-score').textContent = `Skor kamu: ${score} dari ${quizData.length} soal`;
+    }
+
+    function resetQuiz() {
+      currentQuestion = 0; score = 0;
+      document.getElementById('quiz-question').classList.remove('hidden');
+      document.getElementById('quiz-options').classList.remove('hidden');
+      renderQuiz();
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('detail-modal').addEventListener('click', (e) => { 
+      if (e.target === e.currentTarget) closeModal(); 
+    });
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
